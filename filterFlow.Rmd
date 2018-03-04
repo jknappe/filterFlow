@@ -1,5 +1,5 @@
 ---
-title: "Water flow through coconut filter"
+title: "Water flow through a filter medium"
 author: "[Jan Knappe](www.janknappe.com)"
 date: "`r Sys.Date()`"
 output: 
@@ -8,19 +8,69 @@ output:
 ---
   
   ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, tidy = TRUE, tidy.opts = list(comment = FALSE))
 ```
 
-```{r loadPackages, include=TRUE, results='hide', message=FALSE, warning=FALSE}
-library(tidyverse)
-library(lubridate)
-library(padr)
+```{r readChunks, echo = FALSE}
+library(knitr)
+read_chunk("filterFlow.R")
 ```
 
 Water flow through the coconut filter installed in Kilmallock was measured on 2018-02-20 by manually triggering the pump for 5 minutes and monitoring the flow through the filter in the next 40 minutes.
 
-```{r readFlowData, include=TRUE}
-cocoFlow = 
-  read.csv(file = "../dataRaw/miscData/cocoFilterFlow-5min-180220.csv") %>%
-  mutate(time = hms(time))
+```{r loadLibraries, message = FALSE}
+<<loadLibraries>>
+```
+
+```{r defineConstants, message = FALSE}
+<<defineConstants>>
+```
+
+```{r importData, message = FALSE}
+<<importData>>
+```
+
+```{r cumOutflow, message = FALSE}
+<<cumOutflow>>
+```
+
+```{r intervalOutflow, message = FALSE}
+<<intervalOutflow>>
+```
+
+```{r paddedIntervals, message = FALSE}
+<<paddedIntervals>>
+```
+
+
+```{r residenceTime, message = FALSE}
+<<residenceTime>>
+```
+
+```{r combinedFlows, message = FALSE}
+<<combinedFlows>>
+```
+
+```{r filterFlows, message = FALSE}
+<<filterFlows>>
+```
+
+```{r filterVolumes, message = FALSE}
+<<filterVolumes>>
+```
+
+```{r filterTimes, message = FALSE}
+<<filterTimes>>
+```
+
+```{r plot-filterFlow, message = FALSE}
+<<plot-filterFlow>>
+```
+
+```{r plot-filterVolumes, message = FALSE}
+<<plot-filterVolumes>>
+```
+
+```{r plot-filterTimes, message = FALSE}
+<<plot-filterTimes>>
 ```
