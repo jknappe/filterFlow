@@ -13,6 +13,7 @@
 
 library(tidyverse)
 library(readtext)
+library(lubridate)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -26,7 +27,7 @@ kFlowFactor = 0.85
 
 # .kInterval ----
 # interval bin width (in seconds)
-kInterval = 15 
+kInterval = 30 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -37,10 +38,14 @@ kInterval = 15
 # .rawData ----
 # read textfile created by "Stopwatch & Trainer (v1.1.7)" app for Android
 rawData = 
-  readtext(file = "data/filterFlow-180220.txt",
-           docvarsfrom = "filenames",
-           docvarnames = c("type", "date"),
-           dvsep = "-")
+  list.files(pattern = "\\.txt$", recursive = TRUE) %>%
+  lapply(., function(x) 
+    readtext(x, 
+             docvarsfrom = "filenames",
+             docvarnames = c("type", "date"),
+             dvsep = "-")) %>%
+  bind_rows(.) %>%
+  mutate(date = ymd(date))
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -143,7 +148,9 @@ filterFlows =
   mutate(flowType = case_when(flowType %in% "intervalInflowRate.l_min" ~ "interval inflow rate",
                               flowType %in% "intervalOutflowRate.l_min" ~ "interval outflow rate",
                               flowType %in% "intervalVolumeChange.l_min" ~ "interval stored volume change rate"),
-         flowType = factor(flowType))
+         flowType = factor(flowType),
+         date = rawData$date)
+  
 
 ## @knitr filterVolumes
 # .filterVolumes ----
@@ -161,7 +168,8 @@ filterVolumes =
   mutate(volumeType = case_when(volumeType %in% "cumInflowVolume.l" ~ "cummulative water inflow",
                                 volumeType %in% "cumOutflowVolume.l" ~ "cummulative water outflow",
                                 volumeType %in% "storedWaterVolume.l" ~ "stored water"),
-         volumeType = factor(volumeType))  
+         volumeType = factor(volumeType),
+         date = rawData$date)  
 
 ## @knitr filterTimes
 # .filterTimes ----
@@ -179,14 +187,15 @@ filterTimes =
   mutate(timeType = case_when(timeType %in% "outflowEndTime.min" ~ "outflow end",
                               timeType %in% "outflowStartTime.min" ~ "outflow start",
                               timeType %in% "residenceTime.min" ~ "residence time"),
-         timeType = factor(timeType))
+         timeType = factor(timeType),
+         date = rawData$date)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   
 # PLOTS ----
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-## @knitr plot-filterFlow
+## @knitr plot-filterFlows
 # .filterFlows ----
 ggplot(data = filterFlows, aes(x = intervalStartTime.min, y = flowRate.l_min, color = flowType)) + 
   #geom_line(size = 1.2) + 
