@@ -93,15 +93,17 @@ paddedIntervals =
             intervalOutflowRate.l_min = ifelse(is.na(intervalOutflowRate.l_min), 0, intervalOutflowRate.l_min),
             intervalInflowRate.l_min = ifelse(intervalStartTime.s < kInflowTime, sum(intervalOutflowRate.l_min)/((kInflowTime/kInterval)), 0),
             cumOutflowVolume.l = ifelse(is.na(cumOutflowVolume.l), 0, cumOutflowVolume.l),
+            cumOutflowVolume.l = ifelse(cumOutflowVolume.l == lag(cumOutflowVolume.l) & cumOutflowVolume.l != 0, NA, cumOutflowVolume.l),
             cumInflowVolume.l = cumsum(intervalInflowRate.l_min) / (60/kInterval),
             storedWaterVolume.l = cumInflowVolume.l - cumOutflowVolume.l,
+            storedWaterVolume.l = ifelse(storedWaterVolume.l == lag(storedWaterVolume.l) & intervalInflowRate.l_min == 0, NA, storedWaterVolume.l)
             intervalVolumeChange.l_min = intervalInflowRate.l_min - intervalOutflowRate.l_min)
 
-## @knitr residenceTime
-# .residenceTime ----
+## @knitr outflowEndTime
+# .outflowEndTime ----
 # calculate residence time in water filter
 # assumption: water flow between count events is constant
-residenceTime = as_tibble(list(intervalStartTime.min = as.vector(rep(NA, times = length(paddedIntervals$intervalStartTime.min))), 
+outflowEndTime = as_tibble(list(intervalStartTime.min = as.vector(rep(NA, times = length(paddedIntervals$intervalStartTime.min))), 
                                outflowEndTime.min = as.vector(rep(NA, times = length(paddedIntervals$intervalStartTime.min)))))
 linearFlowTimeRatio = NA
 linearEndTime.min = NA
@@ -117,20 +119,17 @@ for (i in 1:length(paddedIntervals$intervalStartTime.min)) {
     linearEndTime.min = 
       linearFlowTimeRatio * (paddedIntervals$intervalStartTime.min[[j+1]] - paddedIntervals$intervalStartTime.min[[j]]) + paddedIntervals$intervalStartTime.min[[j]];
   }
-  residenceTime$intervalStartTime.min[[i]] = paddedIntervals$intervalStartTime.min[[i]]
-  residenceTime$outflowEndTime.min[[i]] = linearEndTime.min
+  outflowEndTime$intervalStartTime.min[[i]] = paddedIntervals$intervalStartTime.min[[i]]
+  outflowEndTime$outflowEndTime.min[[i]] = linearEndTime.min
 }
 
-## @knitr combinedFlows
-# .combinedFlows ----
+## @knitr residenceTime
+# .residenceTime ----
 # combine data
-combinedFlows = 
+residenceTime = 
   paddedIntervals %>%
-  left_join(residenceTime) %>%
+  left_join(outflowEndTime) %>%
   mutate(outflowStartTime.min = lag(outflowEndTime.min, default = min(cumOutflow$elapsedTime.s) / 60),
-         # remove observations without change in time intervals
-         cumOutflowVolume.l = ifelse(cumOutflowVolume.l == lag(cumOutflowVolume.l) & cumOutflowVolume.l != 0, NA, cumOutflowVolume.l),
-         storedWaterVolume.l = ifelse(storedWaterVolume.l == lag(storedWaterVolume.l) & intervalInflowRate.l_min == 0, NA, storedWaterVolume.l),
          # remove obervations that don't make sense after inflow stopped
          outflowStartTime.min = ifelse(intervalInflowRate.l_min == 0, NA, outflowStartTime.min),
          outflowEndTime.min = ifelse(intervalInflowRate.l_min == 0, NA, outflowEndTime.min),
