@@ -9,12 +9,16 @@
 
 # LIBRARIES ----
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## @knitr loadLibraries
+
 library(tidyverse)
 library(readtext)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
 # CONSTANTS ----
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## @knitr defineConstants
 
 # .kFlowFactor ----
 # volume of water (in liters) per count
@@ -28,6 +32,7 @@ kInterval = 15
 
 # DATA IMPORT ----
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## @knitr importData
 
 # .rawData ----
 # read textfile created by "Stopwatch & Trainer (v1.1.7)" app for Android
@@ -42,6 +47,7 @@ rawData =
 # DATA PROCESSING ----
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+## @knitr cumFlow
 # .cumFlow ----
 # calculate cummulative flow from parsing lap times
 cumFlow = 
@@ -54,9 +60,7 @@ cumFlow =
   transmute(cumOutflowVolume.l = as.numeric(row.names(.)) * kFlowFactor,
             elapsedTime.s = (mils + (1000 * secs) + (60000 * mins) + (3600000 * hours))/1000)
 
-# plot cummulative flow
- ggplot(cumFlow, aes(x = elapsedTime.s, y = cumOutflowVolume.l)) + geom_line() +geom_point()
-
+## @knitr intervalFlow
 # .intervalFlow ----
 # calculate outflow per interval bin
 intervalFlow = 
@@ -66,6 +70,7 @@ intervalFlow =
   summarize(cumOutflowVolume.l = max(cumOutflowVolume.l),
             intervalOutflowRate.l_min = n() * kFlowFactor * 60/kInterval) 
 
+## @knitr paddedFlow
 # .paddedFlow ----
 # pad flow data with intervals bins of no-flow conditions
 # and calculate storage and net flow
@@ -83,6 +88,7 @@ paddedFlow =
             storedWaterVolume.l = cumInflowVolume.l - cumOutflowVolume.l,
             intervalVolumeChange.l_min = intervalInflowRate.l_min - intervalOutflowRate.l_min)
 
+## @knitr residenceTime
 # .residenceTime ----
 # calculate residence time in water filter
 # assumption: water flow between count events is constant
@@ -106,6 +112,7 @@ for (i in 1:length(paddedFlow$intervalStartTime.min)) {
   residenceTime$outflowEndTime.min[[i]] = linearEndTime.min
 }
 
+## @knitr linearFlow
 # .linearFlow ----
 # combine data
 linearFlow = 
@@ -120,6 +127,7 @@ linearFlow =
          outflowEndTime.min = ifelse(intervalInflowRate.l_min == 0, NA, outflowEndTime.min),
          residenceTime.min = ifelse(intervalInflowRate.l_min == 0, NA, outflowStartTime.min - intervalStartTime.min))
 
+## @knitr filterFlows
 # .filterFlows ----
 # tidy data
 filterFlows = 
@@ -137,6 +145,7 @@ filterFlows =
                               flowType %in% "intervalVolumeChange.l_min" ~ "interval stored volume change rate"),
          flowType = factor(flowType))
 
+## @knitr filterVolumes
 # .filterVolumes ----
 # tidy data 
 filterVolumes = 
@@ -154,6 +163,7 @@ filterVolumes =
                                 volumeType %in% "storedWaterVolume.l" ~ "stored water"),
          volumeType = factor(volumeType))  
 
+## @knitr filterTimes
 # .filterTimes ----
 # tidy data 
 filterTimes = 
@@ -170,10 +180,13 @@ filterTimes =
                               timeType %in% "outflowStartTime.min" ~ "outflow start",
                               timeType %in% "residenceTime.min" ~ "residence time"),
          timeType = factor(timeType))
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   
 # PLOTS ----
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+## @knitr plot-filterFlow
 # .filterFlows ----
 ggplot(data = filterFlows, aes(x = intervalStartTime.min, y = flowRate.l_min, color = flowType)) + 
   #geom_line(size = 1.2) + 
@@ -189,6 +202,7 @@ ggplot(data = filterFlows, aes(x = intervalStartTime.min, y = flowRate.l_min, co
         legend.position = "bottom",
         panel.background = element_rect(fill = "#F4F4F4")) 
 
+## @knitr plot-filterVolumes
 # .filterVolumes ----
 ggplot(data = filterVolumes, aes(x = intervalStartTime.min, y = waterVolume.l, color = volumeType)) + 
   geom_line(size = 1.2) + 
@@ -204,6 +218,7 @@ ggplot(data = filterVolumes, aes(x = intervalStartTime.min, y = waterVolume.l, c
         legend.position = "bottom",
         panel.background = element_rect(fill = "#F4F4F4")) 
 
+## @knitr plot-filterTimes
 # .filterTimes ----
 ggplot(data = filterTimes, aes(x = intervalStartTime.min, y = elapsedTime.min, color = timeType)) + 
   geom_line(size = 1.2) + 
@@ -218,4 +233,5 @@ ggplot(data = filterTimes, aes(x = intervalStartTime.min, y = elapsedTime.min, c
         axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
         legend.position = "bottom",
         panel.background = element_rect(fill = "#F4F4F4")) 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
