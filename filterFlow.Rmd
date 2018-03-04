@@ -16,59 +16,185 @@ library(knitr)
 read_chunk("filterFlow.R")
 ```
 
-Water flow through the coconut filter installed in Kilmallock was measured on 2018-02-20 by manually triggering the pump for 5 minutes and monitoring the flow through the filter in the next 40 minutes.
+Water flow through the coconut husk filter installed in Kilmallock was measured by manually triggering the pump for given amount of time and monitoring the subsequent outflow from the filter.
 
-```{r loadLibraries, message = FALSE}
+### Notes
+
+- This script works (as of now) only for a single input file. Need to asjust the experiment data to tidy data mapping for multiple input files.
+- Residence time is calculated assuming plug flow. Need to introduce the filter term with absorption/release related to stored water content.
+
+### Script
+
+#### Load Libraries
+```{r, message = FALSE}
 <<loadLibraries>>
 ```
 
-```{r defineConstants, message = FALSE}
+
+#### Define constants
+
+Constants are defined as:
+
+- `kFlowFactor` defines the conversion factor pulse count and flow [L]. 
+- `kInflowTime` defines the duration of the inflow pulse [s].
+- `kInterval` defines the interval bin width for temporal data aggregation [s].
+
+```{r, message = FALSE}
 <<defineConstants>>
 ```
 
-```{r importData, message = FALSE}
+
+#### Import data
+
+Data was collected by using "Stopwatch & Trainer (v1.1.7)" app for Android. This app allows for an unlimited number of laps (i.e., timestamps) and data export via email. The raw text is saved as a txt file in the `data` folder with the naming convention `filterFlow-YYYYMMDD.txt`. The function `readtext()` from library `readtext` is used to import the data file. Output is a data frame with 4 columns:
+
+- `doc_id` containing the the name of the source file
+- `text` containing the text of the source file
+- `type` containing the first part of the filename (`-` as separator), and
+- `date` containing the second part of the filename (= date of the experiment)
+
+```{r, include = TRUE}
 <<importData>>
+  
+str(rawData)
 ```
 
-```{r cumOutflow, message = FALSE}
+
+#### Parse data
+
+The data contained in the `text` column of `rawData` is parsed into cummulative outflow by separating the timestamps containing the total elapsed time and applying the `kFlowFactor`calibration factor. Output is a data frame with 2 colums:
+
+- `elapsedTime.s` containing the time stamp for each pulse count [s]
+- `cumOutflowVolume.l` containing the cummulative volume of water passed through the filter [L]
+
+```{r, message = FALSE}
 <<cumOutflow>>
+  
+head(cumOutflow)
 ```
 
-```{r intervalOutflow, message = FALSE}
+#### Bin data by itnterval
+
+The data contained in `cumOutflow` is binned into equal intervals, depending on the interval bin width chosen through `kInterval`. Output is a data frame with 3 colums:
+
+- `intervalStartTime.s` containing the time stamp for each interval start [s]
+- `cumOutflowVolume.l` containing the cummulative volume of water passed through the filter at the end of the interval [L]
+- `intervalOutflowRate.l_min` containing the flow rate of water passed through the filter withing the interval [L min<sup>-1</sup>]
+
+```{r, message = FALSE}
 <<intervalOutflow>>
+  
+head(intervalOutflow)
 ```
 
-```{r paddedIntervals, message = FALSE}
+#### Padding with zero-outflow intervals
+
+The data contained in `intervalOutflow` is padded woth intervals of zero outflow (e.g., at the beginning, before the first outflow appears, towards the end, when not every interval will have an outflow count). Water inflow is calculate dusing the `kInflowTime` constant, assuming that all water passed through the filter at the end of the experiment (mass conservation). Storage of water within the filter is calculated as difference between cummulative inflow and cummulative outflow. Net flow rate is calculated as difference between inflow and outflow rate. Output is a data frame with 7 colums:
+
+- `intervalStartTime.min` containing the time stamp for each interval start [min]
+- `intervalOutflowRate.l_min` containing the outflow rate during the interval [L min<sup>-1</sup>]
+- `intervalInflowRate.l_min` containing the inflow rate during the interval [L min<sup>-1</sup>]
+- `cumOutflowVolume.l` containing the cummulative volume of water passed through the filter at the end of the interval [L]
+- `cumInflowVolume.l` containing the cummulative volume of water passed into the filter at the end of the interval [L]
+- `storedWaterVolume.l` containing the stored volume of water inside the filter at the end of the interval [L]
+- `intervalVolumeChange.l_min` containing the net change flow rate between intervals [L min<sup>-1</sup>]
+
+```{r, message = FALSE}
 <<paddedIntervals>>
+
+head(paddedIntervals)
 ```
 
+#### Calculating residence time
 
-```{r residenceTime, message = FALSE}
+The residence time of any given slice of water (i.e., volume of water per interval) is calculated assuming plug flow during the filter. First, for any given cummulative inflow volume, the corresponding time of outflow is calculated using constant flow (justifying linear regression) between interval boundaries. Output is a data frame with 2 colums:
+
+- `intervalStartTime.min` containing the time stamp for each interval start [min]
+- `outflowEndTime.min` containing the time when a given slice of water has completely passed through the filter
+
+```{r, message = FALSE}
+<<outflowEndTime>>
+  
+head(outflowEndTime)
+```
+
+Then, the residence time per slice is calculated as the difference between start time of outflow and start time of the respective interval. All slice inflow and outflow times are removed after inflow stops. Output is a data frame with 7 colums:
+
+- `intervalStartTime.min` containing the time stamp for each interval start [min]
+- `intervalOutflowRate.l_min` containing the outflow rate during the interval [L min<sup>-1</sup>]
+- `intervalInflowRate.l_min` containing the inflow rate during the interval [L min<sup>-1</sup>]
+- `cumOutflowVolume.l` containing the cummulative volume of water passed through the filter at the end of the interval [L]
+- `cumInflowVolume.l` containing the cummulative volume of water passed into the filter at the end of the interval [L]
+- `storedWaterVolume.l` containing the stored volume of water inside the filter at the end of the interval [L]
+- `intervalVolumeChange.l_min` containing the net change flow rate between intervals [L min<sup>-1</sup>]
+- `outflowStartTime.min` timestamp of initial outflow per interval slice [min]
+- `outflowEndTime.min` timestamp of final outflow per interval slice [min]
+- `residenceTime.min` average residence time per interval slice, assumping plug flow [min]
+
+```{r, message = FALSE}
 <<residenceTime>>
+  
+head(residenceTime)
 ```
 
-```{r combinedFlows, message = FALSE}
-<<combinedFlows>>
-```
+#### Tidying and split data
 
-```{r filterFlows, message = FALSE}
+Date are converted to tidy format and split accoding to physical unit.
+
+##### Flow data
+All data concerning flow rates are subset and gathered into tidy format.  Output is a data frame with 4 colums:
+
+- `intervalStartTime.min` containing the time stamp for each interval start [min]
+- `flowType` coding for the type of flow
+- `flowRate.l_min` numeric value of flow rate [L min<sup>-1</sup>]
+- `date` containing the date of the experiment (from `rawData`)
+
+```{r, message = FALSE}
 <<filterFlows>>
+  
+summary(filterFlows)
 ```
 
-```{r filterVolumes, message = FALSE}
+##### Volume data
+All data concerning water volumes are subset and gathered into tidy format.  Output is a data frame with 4 colums:
+
+- `intervalStartTime.min` containing the time stamp for each interval start [min]
+- `volumeType` coding for the type of volume
+- `waterVolume.l` numeric value of volume [L]
+- `date` containing the date of the experiment (from `rawData`)
+
+```{r, message = FALSE}
 <<filterVolumes>>
+  
+summary(filterVolumes)
 ```
 
-```{r filterTimes, message = FALSE}
+##### Time/duration data
+All data concerning times/durations are subset and gathered into tidy format.  Output is a data frame with 4 colums:
+
+- `intervalStartTime.min` containing the time stamp for each interval start [min]
+- `timeType` coding for the type of time/duration
+- `elapsedTime.min` numeric value of time/duration [min]
+- `date` containing the date of the experiment (from `rawData`)
+
+```{r, message = FALSE}
 <<filterTimes>>
+  
+summary(filterTimes)
 ```
+
+
+
+#### Plots
+
+##### Flow data
 
 ```{r plotFilterFlow, message = FALSE}
 ggplot(data = filterFlows, aes(x = intervalStartTime.min, y = flowRate.l_min, color = flowType)) + 
   geom_point(size = 2.5, shape = 21, fill = "white") +
   geom_step(size = 1.2) +
   theme_light() + 
-  scale_color_manual(values=c( "#FF6655", "#77BBFF", "#66CC99", "#CCBB66")) +
+  scale_color_manual(name = "flow type", values=c( "#FF6655", "#77BBFF", "#66CC99", "#CCBB66")) +
   labs(x = "elapsed Time [min]", y = expression(paste("water flow [L", " ", min^{-1}, "]"))) +
   theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
         axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
@@ -76,12 +202,15 @@ ggplot(data = filterFlows, aes(x = intervalStartTime.min, y = flowRate.l_min, co
         panel.background = element_rect(fill = "#F4F4F4")) 
 ```
 
+
+##### Volume data
+
 ```{r plotFilterVolumes, message = FALSE}
 ggplot(data = filterVolumes, aes(x = intervalStartTime.min, y = waterVolume.l, color = volumeType)) + 
   geom_line(size = 1.2) + 
   geom_point(size = 2.5, shape = 21, fill = "white") +
   theme_light() + 
-  scale_color_manual(values=c( "#FF6655", "#77BBFF", "#66CC99", "#CCBB66")) +
+  scale_color_manual(name = "mass balance", values=c( "#FF6655", "#77BBFF", "#66CC99", "#CCBB66")) +
   labs(x = "elapsed Time [min]", y = expression(paste("water volume [L]"))) +
   theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
         axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
@@ -89,12 +218,15 @@ ggplot(data = filterVolumes, aes(x = intervalStartTime.min, y = waterVolume.l, c
         panel.background = element_rect(fill = "#F4F4F4")) 
 ```
 
+
+##### Time/duration data
+
 ```{r plotFilterTimes, message = FALSE}
 ggplot(data = filterTimes, aes(x = intervalStartTime.min, y = elapsedTime.min, color = timeType)) + 
   geom_line(size = 1.2) + 
   geom_point(size = 2.5, shape = 21, fill = "white") +
   theme_light() + 
-  scale_color_manual(values=c( "#FF6655", "#77BBFF", "#66CC99")) +
+  scale_color_manual(name = "time", values=c( "#FF6655", "#77BBFF", "#66CC99")) +
   labs(x = "elapsed Time [min]", y = expression(paste("time [min]"))) +
   theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
         axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
