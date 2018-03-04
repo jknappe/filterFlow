@@ -1,0 +1,797 @@
+Summary
+Number Laps : 198
+Fastest Lap (Lap 96) : 00:00:01:585
+Slowest Lap (Lap 198) : 00:05:30:660
+Average Lap Time : 00:00:10:699
+
+Lap 1:
+Lap Time - 00:01:28:798
+Total Time - 00:01:28:798
+
+Lap 2:
+Lap Time - 00:00:08:339
+Total Time - 00:01:41:088
+
+Lap 3:
+Lap Time - 00:00:08:006
+Total Time - 00:01:49:094
+
+Lap 4:
+Lap Time - 00:00:05:542
+Total Time - 00:01:54:636
+
+Lap 5:
+Lap Time - 00:00:05:180
+Total Time - 00:01:59:816
+
+Lap 6:
+Lap Time - 00:00:04:230
+Total Time - 00:02:04:046
+
+Lap 7:
+Lap Time - 00:00:04:312
+Total Time - 00:02:08:358
+
+Lap 8:
+Lap Time - 00:00:03:597
+Total Time - 00:02:11:955
+
+Lap 9:
+Lap Time - 00:00:03:486
+Total Time - 00:02:15:441
+
+Lap 10:
+Lap Time - 00:00:03:244
+Total Time - 00:02:18:685
+
+Lap 11:
+Lap Time - 00:00:03:102
+Total Time - 00:02:21:787
+
+Lap 12:
+Lap Time - 00:00:02:850
+Total Time - 00:02:24:637
+
+Lap 13:
+Lap Time - 00:00:02:987
+Total Time - 00:02:27:624
+
+Lap 14:
+Lap Time - 00:00:02:728
+Total Time - 00:02:30:352
+
+Lap 15:
+Lap Time - 00:00:02:761
+Total Time - 00:02:33:113
+
+Lap 16:
+Lap Time - 00:00:02:543
+Total Time - 00:02:35:656
+
+Lap 17:
+Lap Time - 00:00:02:653
+Total Time - 00:02:38:309
+
+Lap 18:
+Lap Time - 00:00:02:494
+Total Time - 00:02:40:803
+
+Lap 19:
+Lap Time - 00:00:02:505
+Total Time - 00:02:43:308
+
+Lap 20:
+Lap Time - 00:00:02:409
+Total Time - 00:02:45:717
+
+Lap 21:
+Lap Time - 00:00:02:453
+Total Time - 00:02:48:170
+
+Lap 22:
+Lap Time - 00:00:02:309
+Total Time - 00:02:50:479
+
+Lap 23:
+Lap Time - 00:00:02:249
+Total Time - 00:02:52:728
+
+Lap 24:
+Lap Time - 00:00:02:441
+Total Time - 00:02:55:169
+
+Lap 25:
+Lap Time - 00:00:02:252
+Total Time - 00:02:57:421
+
+Lap 26:
+Lap Time - 00:00:02:293
+Total Time - 00:02:59:714
+
+Lap 27:
+Lap Time - 00:00:02:023
+Total Time - 00:03:01:737
+
+Lap 28:
+Lap Time - 00:00:02:201
+Total Time - 00:03:03:938
+
+Lap 29:
+Lap Time - 00:00:02:468
+Total Time - 00:03:06:406
+
+Lap 30:
+Lap Time - 00:00:02:073
+Total Time - 00:03:08:479
+
+Lap 31:
+Lap Time - 00:00:02:143
+Total Time - 00:03:10:622
+
+Lap 32:
+Lap Time - 00:00:02:020
+Total Time - 00:03:12:642
+
+Lap 33:
+Lap Time - 00:00:02:132
+Total Time - 00:03:14:774
+
+Lap 34:
+Lap Time - 00:00:02:013
+Total Time - 00:03:16:787
+
+Lap 35:
+Lap Time - 00:00:02:069
+Total Time - 00:03:18:856
+
+Lap 36:
+Lap Time - 00:00:02:017
+Total Time - 00:03:20:873
+
+Lap 37:
+Lap Time - 00:00:02:099
+Total Time - 00:03:22:972
+
+Lap 38:
+Lap Time - 00:00:01:747
+Total Time - 00:03:24:719
+
+Lap 39:
+Lap Time - 00:00:02:170
+Total Time - 00:03:26:889
+
+Lap 40:
+Lap Time - 00:00:01:901
+Total Time - 00:03:28:790
+
+Lap 41:
+Lap Time - 00:00:02:065
+Total Time - 00:03:30:855
+
+Lap 42:
+Lap Time - 00:00:01:861
+Total Time - 00:03:32:716
+
+Lap 43:
+Lap Time - 00:00:02:053
+Total Time - 00:03:34:769
+
+Lap 44:
+Lap Time - 00:00:01:940
+Total Time - 00:03:36:709
+
+Lap 45:
+Lap Time - 00:00:01:957
+Total Time - 00:03:38:666
+
+Lap 46:
+Lap Time - 00:00:01:854
+Total Time - 00:03:40:520
+
+Lap 47:
+Lap Time - 00:00:01:826
+Total Time - 00:03:42:346
+
+Lap 48:
+Lap Time - 00:00:01:898
+Total Time - 00:03:44:244
+
+Lap 49:
+Lap Time - 00:00:01:906
+Total Time - 00:03:46:150
+
+Lap 50:
+Lap Time - 00:00:01:814
+Total Time - 00:03:47:964
+
+Lap 51:
+Lap Time - 00:00:02:123
+Total Time - 00:03:50:087
+
+Lap 52:
+Lap Time - 00:00:01:768
+Total Time - 00:03:51:855
+
+Lap 53:
+Lap Time - 00:00:01:970
+Total Time - 00:03:53:825
+
+Lap 54:
+Lap Time - 00:00:01:915
+Total Time - 00:03:55:740
+
+Lap 55:
+Lap Time - 00:00:01:668
+Total Time - 00:03:57:408
+
+Lap 56:
+Lap Time - 00:00:01:973
+Total Time - 00:03:59:381
+
+Lap 57:
+Lap Time - 00:00:01:668
+Total Time - 00:04:01:049
+
+Lap 58:
+Lap Time - 00:00:01:904
+Total Time - 00:04:02:953
+
+Lap 59:
+Lap Time - 00:00:01:851
+Total Time - 00:04:04:804
+
+Lap 60:
+Lap Time - 00:00:01:786
+Total Time - 00:04:06:590
+
+Lap 61:
+Lap Time - 00:00:01:848
+Total Time - 00:04:08:438
+
+Lap 62:
+Lap Time - 00:00:01:880
+Total Time - 00:04:10:318
+
+Lap 63:
+Lap Time - 00:00:01:881
+Total Time - 00:04:12:199
+
+Lap 64:
+Lap Time - 00:00:01:826
+Total Time - 00:04:14:025
+
+Lap 65:
+Lap Time - 00:00:01:724
+Total Time - 00:04:15:749
+
+Lap 66:
+Lap Time - 00:00:01:910
+Total Time - 00:04:17:659
+
+Lap 67:
+Lap Time - 00:00:01:803
+Total Time - 00:04:19:462
+
+Lap 68:
+Lap Time - 00:00:01:698
+Total Time - 00:04:21:160
+
+Lap 69:
+Lap Time - 00:00:01:853
+Total Time - 00:04:23:013
+
+Lap 70:
+Lap Time - 00:00:01:792
+Total Time - 00:04:24:805
+
+Lap 71:
+Lap Time - 00:00:01:922
+Total Time - 00:04:26:727
+
+Lap 72:
+Lap Time - 00:00:01:732
+Total Time - 00:04:28:459
+
+Lap 73:
+Lap Time - 00:00:01:887
+Total Time - 00:04:30:346
+
+Lap 74:
+Lap Time - 00:00:01:864
+Total Time - 00:04:32:210
+
+Lap 75:
+Lap Time - 00:00:01:883
+Total Time - 00:04:34:093
+
+Lap 76:
+Lap Time - 00:00:01:743
+Total Time - 00:04:35:836
+
+Lap 77:
+Lap Time - 00:00:01:909
+Total Time - 00:04:37:745
+
+Lap 78:
+Lap Time - 00:00:01:826
+Total Time - 00:04:39:571
+
+Lap 79:
+Lap Time - 00:00:01:703
+Total Time - 00:04:41:274
+
+Lap 80:
+Lap Time - 00:00:01:812
+Total Time - 00:04:43:086
+
+Lap 81:
+Lap Time - 00:00:01:803
+Total Time - 00:04:44:889
+
+Lap 82:
+Lap Time - 00:00:01:858
+Total Time - 00:04:46:747
+
+Lap 83:
+Lap Time - 00:00:01:912
+Total Time - 00:04:48:659
+
+Lap 84:
+Lap Time - 00:00:01:697
+Total Time - 00:04:50:356
+
+Lap 85:
+Lap Time - 00:00:01:796
+Total Time - 00:04:52:152
+
+Lap 86:
+Lap Time - 00:00:01:739
+Total Time - 00:04:53:891
+
+Lap 87:
+Lap Time - 00:00:01:749
+Total Time - 00:04:55:640
+
+Lap 88:
+Lap Time - 00:00:01:902
+Total Time - 00:04:57:542
+
+Lap 89:
+Lap Time - 00:00:01:814
+Total Time - 00:04:59:356
+
+Lap 90:
+Lap Time - 00:00:01:747
+Total Time - 00:05:01:103
+
+Lap 91:
+Lap Time - 00:00:01:867
+Total Time - 00:05:02:970
+
+Lap 92:
+Lap Time - 00:00:01:728
+Total Time - 00:05:04:698
+
+Lap 93:
+Lap Time - 00:00:01:816
+Total Time - 00:05:06:514
+
+Lap 94:
+Lap Time - 00:00:01:820
+Total Time - 00:05:08:334
+
+Lap 95:
+Lap Time - 00:00:01:882
+Total Time - 00:05:10:216
+
+Lap 96:
+Lap Time - 00:00:01:585
+Total Time - 00:05:11:801
+
+Lap 97:
+Lap Time - 00:00:01:814
+Total Time - 00:05:13:615
+
+Lap 98:
+Lap Time - 00:00:01:877
+Total Time - 00:05:15:492
+
+Lap 99:
+Lap Time - 00:00:01:782
+Total Time - 00:05:17:274
+
+Lap 100:
+Lap Time - 00:00:01:792
+Total Time - 00:05:19:066
+
+Lap 101:
+Lap Time - 00:00:01:707
+Total Time - 00:05:20:773
+
+Lap 102:
+Lap Time - 00:00:01:745
+Total Time - 00:05:22:518
+
+Lap 103:
+Lap Time - 00:00:01:774
+Total Time - 00:05:24:292
+
+Lap 104:
+Lap Time - 00:00:01:738
+Total Time - 00:05:26:030
+
+Lap 105:
+Lap Time - 00:00:01:985
+Total Time - 00:05:28:015
+
+Lap 106:
+Lap Time - 00:00:01:864
+Total Time - 00:05:29:879
+
+Lap 107:
+Lap Time - 00:00:01:810
+Total Time - 00:05:31:689
+
+Lap 108:
+Lap Time - 00:00:01:775
+Total Time - 00:05:33:464
+
+Lap 109:
+Lap Time - 00:00:01:811
+Total Time - 00:05:35:275
+
+Lap 110:
+Lap Time - 00:00:01:690
+Total Time - 00:05:36:965
+
+Lap 111:
+Lap Time - 00:00:01:903
+Total Time - 00:05:38:868
+
+Lap 112:
+Lap Time - 00:00:01:807
+Total Time - 00:05:40:675
+
+Lap 113:
+Lap Time - 00:00:01:833
+Total Time - 00:05:42:508
+
+Lap 114:
+Lap Time - 00:00:01:702
+Total Time - 00:05:44:210
+
+Lap 115:
+Lap Time - 00:00:01:969
+Total Time - 00:05:46:179
+
+Lap 116:
+Lap Time - 00:00:01:981
+Total Time - 00:05:48:160
+
+Lap 117:
+Lap Time - 00:00:01:815
+Total Time - 00:05:49:975
+
+Lap 118:
+Lap Time - 00:00:02:196
+Total Time - 00:05:52:171
+
+Lap 119:
+Lap Time - 00:00:02:196
+Total Time - 00:05:54:367
+
+Lap 120:
+Lap Time - 00:00:01:983
+Total Time - 00:05:56:350
+
+Lap 121:
+Lap Time - 00:00:02:288
+Total Time - 00:05:58:638
+
+Lap 122:
+Lap Time - 00:00:02:066
+Total Time - 00:06:00:704
+
+Lap 123:
+Lap Time - 00:00:02:338
+Total Time - 00:06:03:042
+
+Lap 124:
+Lap Time - 00:00:02:175
+Total Time - 00:06:05:217
+
+Lap 125:
+Lap Time - 00:00:02:331
+Total Time - 00:06:07:548
+
+Lap 126:
+Lap Time - 00:00:02:216
+Total Time - 00:06:09:764
+
+Lap 127:
+Lap Time - 00:00:02:512
+Total Time - 00:06:12:276
+
+Lap 128:
+Lap Time - 00:00:02:560
+Total Time - 00:06:14:836
+
+Lap 129:
+Lap Time - 00:00:02:770
+Total Time - 00:06:17:606
+
+Lap 130:
+Lap Time - 00:00:02:410
+Total Time - 00:06:20:016
+
+Lap 131:
+Lap Time - 00:00:02:998
+Total Time - 00:06:23:014
+
+Lap 132:
+Lap Time - 00:00:02:739
+Total Time - 00:06:25:753
+
+Lap 133:
+Lap Time - 00:00:03:087
+Total Time - 00:06:28:840
+
+Lap 134:
+Lap Time - 00:00:02:917
+Total Time - 00:06:31:757
+
+Lap 135:
+Lap Time - 00:00:03:272
+Total Time - 00:06:35:029
+
+Lap 136:
+Lap Time - 00:00:03:118
+Total Time - 00:06:38:147
+
+Lap 137:
+Lap Time - 00:00:03:331
+Total Time - 00:06:41:478
+
+Lap 138:
+Lap Time - 00:00:03:249
+Total Time - 00:06:44:727
+
+Lap 139:
+Lap Time - 00:00:03:585
+Total Time - 00:06:48:312
+
+Lap 140:
+Lap Time - 00:00:03:626
+Total Time - 00:06:51:938
+
+Lap 141:
+Lap Time - 00:00:03:901
+Total Time - 00:06:55:839
+
+Lap 142:
+Lap Time - 00:00:03:833
+Total Time - 00:06:59:672
+
+Lap 143:
+Lap Time - 00:00:04:366
+Total Time - 00:07:04:038
+
+Lap 144:
+Lap Time - 00:00:03:924
+Total Time - 00:07:07:962
+
+Lap 145:
+Lap Time - 00:00:04:729
+Total Time - 00:07:12:691
+
+Lap 146:
+Lap Time - 00:00:04:578
+Total Time - 00:07:17:269
+
+Lap 147:
+Lap Time - 00:00:04:891
+Total Time - 00:07:22:160
+
+Lap 148:
+Lap Time - 00:00:05:097
+Total Time - 00:07:27:257
+
+Lap 149:
+Lap Time - 00:00:05:168
+Total Time - 00:07:32:425
+
+Lap 150:
+Lap Time - 00:00:05:248
+Total Time - 00:07:37:673
+
+Lap 151:
+Lap Time - 00:00:05:910
+Total Time - 00:07:43:583
+
+Lap 152:
+Lap Time - 00:00:06:062
+Total Time - 00:07:49:645
+
+Lap 153:
+Lap Time - 00:00:06:404
+Total Time - 00:07:56:049
+
+Lap 154:
+Lap Time - 00:00:06:298
+Total Time - 00:08:02:347
+
+Lap 155:
+Lap Time - 00:00:07:263
+Total Time - 00:08:09:610
+
+Lap 156:
+Lap Time - 00:00:07:143
+Total Time - 00:08:16:753
+
+Lap 157:
+Lap Time - 00:00:07:964
+Total Time - 00:08:24:717
+
+Lap 158:
+Lap Time - 00:00:07:917
+Total Time - 00:08:32:634
+
+Lap 159:
+Lap Time - 00:00:08:448
+Total Time - 00:08:41:082
+
+Lap 160:
+Lap Time - 00:00:08:929
+Total Time - 00:08:50:011
+
+Lap 161:
+Lap Time - 00:00:09:720
+Total Time - 00:08:59:731
+
+Lap 162:
+Lap Time - 00:00:09:615
+Total Time - 00:09:09:346
+
+Lap 163:
+Lap Time - 00:00:10:908
+Total Time - 00:09:20:254
+
+Lap 164:
+Lap Time - 00:00:11:151
+Total Time - 00:09:31:405
+
+Lap 165:
+Lap Time - 00:00:12:064
+Total Time - 00:09:43:469
+
+Lap 166:
+Lap Time - 00:00:12:277
+Total Time - 00:09:55:746
+
+Lap 167:
+Lap Time - 00:00:13:526
+Total Time - 00:10:09:272
+
+Lap 168:
+Lap Time - 00:00:13:725
+Total Time - 00:10:22:997
+
+Lap 169:
+Lap Time - 00:00:15:538
+Total Time - 00:10:38:535
+
+Lap 170:
+Lap Time - 00:00:15:454
+Total Time - 00:10:53:989
+
+Lap 171:
+Lap Time - 00:00:17:142
+Total Time - 00:11:11:131
+
+Lap 172:
+Lap Time - 00:00:17:349
+Total Time - 00:11:28:480
+
+Lap 173:
+Lap Time - 00:00:19:701
+Total Time - 00:11:48:181
+
+Lap 174:
+Lap Time - 00:00:19:713
+Total Time - 00:12:07:894
+
+Lap 175:
+Lap Time - 00:00:21:824
+Total Time - 00:12:29:718
+
+Lap 176:
+Lap Time - 00:00:22:146
+Total Time - 00:12:51:864
+
+Lap 177:
+Lap Time - 00:00:24:476
+Total Time - 00:13:16:340
+
+Lap 178:
+Lap Time - 00:00:25:567
+Total Time - 00:13:41:907
+
+Lap 179:
+Lap Time - 00:00:27:715
+Total Time - 00:14:09:622
+
+Lap 180:
+Lap Time - 00:00:28:025
+Total Time - 00:14:37:647
+
+Lap 181:
+Lap Time - 00:00:31:551
+Total Time - 00:15:09:198
+
+Lap 182:
+Lap Time - 00:00:31:948
+Total Time - 00:15:41:146
+
+Lap 183:
+Lap Time - 00:00:35:935
+Total Time - 00:16:17:081
+
+Lap 184:
+Lap Time - 00:00:36:139
+Total Time - 00:16:53:220
+
+Lap 185:
+Lap Time - 00:00:40:753
+Total Time - 00:17:33:973
+
+Lap 186:
+Lap Time - 00:00:41:271
+Total Time - 00:18:15:244
+
+Lap 187:
+Lap Time - 00:00:45:884
+Total Time - 00:19:01:128
+
+Lap 188:
+Lap Time - 00:00:46:853
+Total Time - 00:19:47:981
+
+Lap 189:
+Lap Time - 00:00:52:779
+Total Time - 00:20:40:760
+
+Lap 190:
+Lap Time - 00:00:53:192
+Total Time - 00:21:33:952
+
+Lap 191:
+Lap Time - 00:00:59:832
+Total Time - 00:22:33:784
+
+Lap 192:
+Lap Time - 00:01:00:078
+Total Time - 00:23:33:862
+
+Lap 193:
+Lap Time - 00:01:08:299
+Total Time - 00:24:42:161
+
+Lap 194:
+Lap Time - 00:01:09:711
+Total Time - 00:25:51:872
+
+Lap 195:
+Lap Time - 00:01:17:805
+Total Time - 00:27:09:677
+
+Lap 196:
+Lap Time - 00:01:19:186
+Total Time - 00:28:28:863
+
+Lap 197:
+Lap Time - 00:01:29:711
+Total Time - 00:29:58:574
+
+Lap 198:
+Lap Time - 00:05:30:660
+Total Time - 00:35:29:234

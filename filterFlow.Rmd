@@ -1,0 +1,26 @@
+---
+title: "Water flow through coconut filter"
+author: "[Jan Knappe](www.janknappe.com)"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    highlight: tango
+---
+  
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r loadPackages, include=TRUE, results='hide', message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+library(padr)
+```
+
+Water flow through the coconut filter installed in Kilmallock was measured on 2018-02-20 by manually triggering the pump for 5 minutes and monitoring the flow through the filter in the next 40 minutes.
+
+```{r readFlowData, include=TRUE}
+cocoFlow = 
+  read.csv(file = "../dataRaw/miscData/cocoFilterFlow-5min-180220.csv") %>%
+  mutate(time = hms(time))
+```
