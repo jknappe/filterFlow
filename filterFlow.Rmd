@@ -63,14 +63,41 @@ Water flow through the coconut filter installed in Kilmallock was measured on 20
 <<filterTimes>>
 ```
 
-```{r plot-filterFlow, message = FALSE}
-<<plot-filterFlow>>
+```{r plotFilterFlow, message = FALSE}
+ggplot(data = filterFlows, aes(x = intervalStartTime.min, y = flowRate.l_min, color = flowType)) + 
+  geom_point(size = 2.5, shape = 21, fill = "white") +
+  geom_step(size = 1.2) +
+  theme_light() + 
+  scale_color_manual(values=c( "#FF6655", "#77BBFF", "#66CC99", "#CCBB66")) +
+  labs(x = "elapsed Time [min]", y = expression(paste("water flow [L", " ", min^{-1}, "]"))) +
+  theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
+        axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
+        legend.position = "bottom",
+        panel.background = element_rect(fill = "#F4F4F4")) 
 ```
 
-```{r plot-filterVolumes, message = FALSE}
-<<plot-filterVolumes>>
+```{r plotFilterVolumes, message = FALSE}
+ggplot(data = filterVolumes, aes(x = intervalStartTime.min, y = waterVolume.l, color = volumeType)) + 
+  geom_line(size = 1.2) + 
+  geom_point(size = 2.5, shape = 21, fill = "white") +
+  theme_light() + 
+  scale_color_manual(values=c( "#FF6655", "#77BBFF", "#66CC99", "#CCBB66")) +
+  labs(x = "elapsed Time [min]", y = expression(paste("water volume [L]"))) +
+  theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
+        axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
+        legend.position = "bottom",
+        panel.background = element_rect(fill = "#F4F4F4")) 
 ```
 
-```{r plot-filterTimes, message = FALSE}
-<<plot-filterTimes>>
+```{r plotFilterTimes, message = FALSE}
+ggplot(data = filterTimes, aes(x = intervalStartTime.min, y = elapsedTime.min, color = timeType)) + 
+  geom_line(size = 1.2) + 
+  geom_point(size = 2.5, shape = 21, fill = "white") +
+  theme_light() + 
+  scale_color_manual(values=c( "#FF6655", "#77BBFF", "#66CC99")) +
+  labs(x = "elapsed Time [min]", y = expression(paste("time [min]"))) +
+  theme(axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)),
+        axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
+        legend.position = "bottom",
+        panel.background = element_rect(fill = "#F4F4F4")) 
 ```
