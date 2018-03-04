@@ -96,7 +96,7 @@ paddedIntervals =
             cumOutflowVolume.l = ifelse(cumOutflowVolume.l == lag(cumOutflowVolume.l) & cumOutflowVolume.l != 0, NA, cumOutflowVolume.l),
             cumInflowVolume.l = cumsum(intervalInflowRate.l_min) / (60/kInterval),
             storedWaterVolume.l = cumInflowVolume.l - cumOutflowVolume.l,
-            storedWaterVolume.l = ifelse(storedWaterVolume.l == lag(storedWaterVolume.l) & intervalInflowRate.l_min == 0, NA, storedWaterVolume.l)
+            storedWaterVolume.l = ifelse(storedWaterVolume.l == lag(storedWaterVolume.l) & intervalInflowRate.l_min == 0, NA, storedWaterVolume.l),
             intervalVolumeChange.l_min = intervalInflowRate.l_min - intervalOutflowRate.l_min)
 
 ## @knitr outflowEndTime
@@ -139,7 +139,7 @@ residenceTime =
 # .filterFlows ----
 # tidy data
 filterFlows = 
-  combinedFlows %>%
+  residenceTime %>%
   select(intervalStartTime.min, 
          intervalInflowRate.l_min, 
          intervalOutflowRate.l_min, 
@@ -159,7 +159,7 @@ filterFlows =
 # .filterVolumes ----
 # tidy data 
 filterVolumes = 
-  combinedFlows %>%
+  residenceTime %>%
   select(intervalStartTime.min, 
          cumInflowVolume.l, 
          cumOutflowVolume.l, 
@@ -178,7 +178,7 @@ filterVolumes =
 # .filterTimes ----
 # tidy data 
 filterTimes = 
-  combinedFlows %>%
+  residenceTime %>%
   select(intervalStartTime.min, 
          outflowStartTime.min,
          outflowEndTime.min,
