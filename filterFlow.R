@@ -25,6 +25,10 @@ library(lubridate)
 # volume of water (in liters) per count
 kFlowFactor = 0.85 
 
+# .kInflowTime ----
+# duration of inflow pulse (in seconds)
+kInflowTime = 300
+
 # .kInterval ----
 # interval bin width (in seconds)
 kInterval = 30 
@@ -87,7 +91,7 @@ paddedIntervals =
   fill(cumOutflowVolume.l) %>%
   transmute(intervalStartTime.min = intervalStartTime.s / 60,
             intervalOutflowRate.l_min = ifelse(is.na(intervalOutflowRate.l_min), 0, intervalOutflowRate.l_min),
-            intervalInflowRate.l_min = ifelse(intervalStartTime.s < 300, sum(intervalOutflowRate.l_min)/((300/kInterval)), 0),
+            intervalInflowRate.l_min = ifelse(intervalStartTime.s < kInflowTime, sum(intervalOutflowRate.l_min)/((kInflowTime/kInterval)), 0),
             cumOutflowVolume.l = ifelse(is.na(cumOutflowVolume.l), 0, cumOutflowVolume.l),
             cumInflowVolume.l = cumsum(intervalInflowRate.l_min) / (60/kInterval),
             storedWaterVolume.l = cumInflowVolume.l - cumOutflowVolume.l,
