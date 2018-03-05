@@ -28,6 +28,7 @@ Water flow through the coconut husk filter installed in Kilmallock was measured 
 #### Load Libraries
 ```{r, message = FALSE}
 <<loadLibraries>>
+skim_with(numeric = list(hist = NULL))
 ```
 
 
@@ -56,7 +57,7 @@ Data was collected by using "Stopwatch & Trainer (v1.1.7)" app for Android. This
 ```{r, include = TRUE}
 <<importData>>
   
-str(rawData)
+skim(rawData)
 ```
 
 
@@ -67,11 +68,13 @@ The data contained in the `text` column of `rawData` is parsed into cummulative 
 - `elapsedTime.s` containing the time stamp for each pulse count [s]
 - `cumOutflowVolume.l` containing the cummulative volume of water passed through the filter [L]
 
-```{r, message = FALSE}
+```{r}
 <<cumOutflow>>
   
-head(cumOutflow)
+skim(cumOutflow)
 ```
+
+
 
 #### Bin data by itnterval
 
@@ -84,7 +87,7 @@ The data contained in `cumOutflow` is binned into equal intervals, depending on 
 ```{r, message = FALSE}
 <<intervalOutflow>>
   
-head(intervalOutflow)
+skim(intervalOutflow)
 ```
 
 #### Padding with zero-outflow intervals
@@ -102,7 +105,7 @@ The data contained in `intervalOutflow` is padded woth intervals of zero outflow
 ```{r, message = FALSE}
 <<paddedIntervals>>
 
-head(paddedIntervals)
+skim(paddedIntervals)
 ```
 
 #### Calculating residence time
@@ -115,7 +118,7 @@ The residence time of any given slice of water (i.e., volume of water per interv
 ```{r, message = FALSE}
 <<outflowEndTime>>
   
-head(outflowEndTime)
+skim(outflowEndTime)
 ```
 
 Then, the residence time per slice is calculated as the difference between start time of outflow and start time of the respective interval. All slice inflow and outflow times are removed after inflow stops. Output is a data frame with 7 colums:
@@ -134,7 +137,7 @@ Then, the residence time per slice is calculated as the difference between start
 ```{r, message = FALSE}
 <<residenceTime>>
   
-head(residenceTime)
+skim(residenceTime)
 ```
 
 #### Tidying and split data
@@ -153,6 +156,7 @@ All data concerning flow rates are subset and gathered into tidy format.  Output
 <<filterFlows>>
   
 summary(filterFlows)
+skim(filterFlows)
 ```
 
 ##### Volume data
@@ -167,6 +171,7 @@ All data concerning water volumes are subset and gathered into tidy format.  Out
 <<filterVolumes>>
   
 summary(filterVolumes)
+skim(filterVolumes)
 ```
 
 ##### Time/duration data
@@ -181,6 +186,7 @@ All data concerning times/durations are subset and gathered into tidy format.  O
 <<filterTimes>>
   
 summary(filterTimes)
+skim(filterTimes) %>% kable()
 ```
 
 
@@ -191,8 +197,8 @@ summary(filterTimes)
 
 ```{r plotFilterFlow, message = FALSE}
 ggplot(data = filterFlows, aes(x = intervalStartTime.min, y = flowRate.l_min, color = flowType)) + 
-  geom_point(size = 2.5, shape = 21, fill = "white") +
   geom_step(size = 1.2) +
+  geom_point(size = 2.5, shape = 21, fill = "white") +
   theme_light() + 
   scale_color_manual(name = "flow type", values=c( "#FF6655", "#77BBFF", "#66CC99", "#CCBB66")) +
   labs(x = "elapsed Time [min]", y = expression(paste("water flow [L", " ", min^{-1}, "]"))) +
@@ -232,4 +238,11 @@ ggplot(data = filterTimes, aes(x = intervalStartTime.min, y = elapsedTime.min, c
         axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
         legend.position = "bottom",
         panel.background = element_rect(fill = "#F4F4F4")) 
+```
+
+
+#### Session Info
+
+```{r sessionInfo}
+sessionInfo()
 ```

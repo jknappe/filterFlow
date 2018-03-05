@@ -14,6 +14,7 @@
 library(tidyverse)
 library(readtext)
 library(lubridate)
+library(skimr)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
