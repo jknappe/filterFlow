@@ -77,7 +77,7 @@ intervalOutflow =
   cumOutflow %>%
   mutate(intervalStartTime.s = kInterval * (round((elapsedTime.s + kInterval/2) / kInterval))) %>%
   group_by(intervalStartTime.s) %>% 
-  summarize(cumOutflowVolume.l = max(cumOutflowVolume.l),
+  summarise(cumOutflowVolume.l = max(cumOutflowVolume.l),
             intervalOutflowRate.l_min = n() * kFlowFactor * 60/kInterval) 
 
 ## @knitr paddedIntervals
@@ -246,5 +246,91 @@ ggplot(data = filterTimes, aes(x = intervalStartTime.min, y = elapsedTime.min, c
         axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
         legend.position = "bottom",
         panel.background = element_rect(fill = "#F4F4F4")) 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+# REPORTS ----
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## @knitr reports
+library(dataMaid)
+configFileDataMaid = "config/dataMaidExtensions.R"
+
+# if script with extension functions for dataMaid exists
+if (file.exists(configFileDataMaid)) {
+  
+  # load these functions
+  source(configFileDataMaid)
+  
+  # change working dir to reports
+  setwd("reports/")
+  
+  # print reports with extension functions
+  makeDataReport(
+    filterFlows,
+    replace = TRUE,
+    summaries = setSummaries(
+      numeric = defaultNumericSummaries(add = "meanSummary"),
+      integer = defaultIntegerSummaries(add = "meanSummary"),
+      logical = defaultLogicalSummaries(add = "meanSummary")
+    ),
+    visuals = setVisuals(
+      factor = "mosaicVisual",
+      numeric = "prettierHist",
+      integer = "prettierHist",
+      Date = "prettierHist"
+    )
+  )
+  
+  makeDataReport(
+    filterVolumes,
+    replace = TRUE,
+    summaries = setSummaries(
+      numeric = defaultNumericSummaries(add = "meanSummary"),
+      integer = defaultIntegerSummaries(add = "meanSummary"),
+      logical = defaultLogicalSummaries(add = "meanSummary")
+    ),
+    visuals = setVisuals(
+      factor = "mosaicVisual",
+      numeric = "prettierHist",
+      integer = "prettierHist",
+      Date = "prettierHist"
+    )
+  )
+  
+  makeDataReport(
+    filterTimes,
+    replace = TRUE,
+    summaries = setSummaries(
+      numeric = defaultNumericSummaries(add = "meanSummary"),
+      integer = defaultIntegerSummaries(add = "meanSummary"),
+      logical = defaultLogicalSummaries(add = "meanSummary")
+    ),
+    visuals = setVisuals(
+      factor = "mosaicVisual",
+      numeric = "prettierHist",
+      integer = "prettierHist",
+      Date = "prettierHist"
+    )
+  )
+  
+  # change working dir to default
+  setwd("../")
+  
+# otherwise  
+} else {
+  
+  # change working dir to reports
+  setwd("reports/")
+  
+  # print in standard report format
+  makeDataReport(filterFlows, replace = TRUE)
+  makeDataReport(filterVolumes, replace = TRUE)
+  makeDataReport(filterTimes, replace = TRUE)
+  
+  # change working dir to default
+  setwd("../")
+}
+
+w ginger
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
